@@ -162,8 +162,8 @@
     </None>
     <Content Include="FodyWeavers.xml" />
     <None Include="..\..\..\Common\pingu.png" />
-    <None Include="..\..\..\Common\vert.txt" />
-    <None Include="..\..\..\Common\frag.txt" />
+    <None Include="..\..\..\Common\vert.glsl" />
+    <None Include="..\..\..\Common\frag.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
