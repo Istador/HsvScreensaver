@@ -37,9 +37,19 @@ namespace de.blackpinguin.gl.hsvscr {
             gl.Resize(Width, Height);
         }
 
+        #if DEBUG
+        private double frames = 0.0, ticks = 0.0;
+        #endif
+
         protected override void OnUpdateFrame(FrameEventArgs e) {
             base.OnUpdateFrame(e);
             gl.UpdateFrame();
+
+            #if DEBUG
+            frames += RenderFrequency;
+            ticks += 1.0;
+            Console.WriteLine(frames / ticks);
+            #endif
         }
 
         protected override void OnRenderFrame(FrameEventArgs e) {

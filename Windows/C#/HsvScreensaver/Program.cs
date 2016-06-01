@@ -13,7 +13,6 @@ namespace de.blackpinguin.gl.hsvscr {
             char cmd = getParam(args, 0, 's');
             if ( cmd == 'c' ) {
                 Configure();
-
             }
             else if ( cmd == 'p' ) {
                 Preview(args);

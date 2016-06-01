@@ -51,7 +51,7 @@ namespace de.blackpinguin.gl.hsvscr {
                     gl.Load(preview.Width, preview.Height);
                     loaded = true;
                 }
-                catch ( Exception ex ) {
+                catch ( Exception ) {
                     loaded = false;
                 }
             }
