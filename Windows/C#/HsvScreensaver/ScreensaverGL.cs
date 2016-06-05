@@ -57,8 +57,8 @@ namespace de.blackpinguin.gl.hsvscr {
             GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
 
             // load shader
-            string vs = Properties.Resources.vert;
-            string fs = Properties.Resources.frag;
+            string vs = Settings.VertexShader;
+            string fs = Settings.FragmentShader;
             shader = new Shader(vs, fs);
             shader.Bind();
 

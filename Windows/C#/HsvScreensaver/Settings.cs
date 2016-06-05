@@ -11,9 +11,9 @@ namespace de.blackpinguin.gl.hsvscr {
         [NonSerialized()]
         private static Settings instance = null;
         [NonSerialized()]
-        private static string settingsPath = Path.Combine(Directory.GetParent(Application.UserAppDataPath).FullName, "config.xml");
+        private static string settingsDir = null;
         #endregion
-
+        
         #region serialized attributes
         public string ImagePath = "C:\\Users\\Public\\Pictures\\Sample Pictures\\Tulips.jpg";
         public double Speed = 20.0; // 20 °/s
@@ -31,9 +31,7 @@ namespace de.blackpinguin.gl.hsvscr {
         public bool[] Randomize = new bool[] { true, true, true };
         #endregion
 
-        private Settings() {
-            //Directory.Delete(Application.UserAppDataPath); // delete subfolder with version number
-        }
+        private Settings() {}
 
         public static Settings I {
             get {
@@ -46,11 +44,57 @@ namespace de.blackpinguin.gl.hsvscr {
             }
         }
 
+
+        public static string SettingsDir {
+            get {
+                if (settingsDir == null) {
+                    settingsDir = Directory.GetParent(Application.UserAppDataPath).FullName;
+                    Directory.Delete(Application.UserAppDataPath); // delete subfolder with version number
+                }
+                return settingsDir;
+            }
+        }
+
+        public static string SettingsFile {
+            get {
+                return Path.Combine(SettingsDir, "config.xml");
+            }
+        }
+
+
+        public static string VertexShader {
+            get {
+                try {
+                    string path = Path.Combine(SettingsDir, "vert.glsl");
+                    if (File.Exists(path)) {
+                        return File.ReadAllText(path);
+                    }
+                }
+                catch (Exception) { }
+                return Properties.Resources.vert;
+            }
+        }
+
+
+        public static string FragmentShader {
+            get {
+                try {
+                    string path = Path.Combine(SettingsDir, "frag.glsl");
+                    if (File.Exists(path)) {
+                        return File.ReadAllText(path);
+                    }
+                }
+                catch (Exception) { }
+                return Properties.Resources.frag;
+            }
+        }
+
+
         public void Save() {
             TextWriter textWriter = null;
             try {
                 XmlSerializer serializer = new XmlSerializer(instance.GetType());
-                textWriter = new StreamWriter(settingsPath);
+                textWriter = new StreamWriter(SettingsFile);
                 serializer.Serialize(textWriter, instance);
             }
             catch ( Exception ex ) {
@@ -65,9 +109,9 @@ namespace de.blackpinguin.gl.hsvscr {
             StreamReader textReader = null;
             XmlTextReader xmlReader = null;
             try {
-                if ( File.Exists(settingsPath) ) {
+                if ( File.Exists(SettingsFile) ) {
                     XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-                    textReader = new StreamReader(settingsPath);
+                    textReader = new StreamReader(SettingsFile);
                     xmlReader = new XmlTextReader(textReader);
 
                     if ( serializer.CanDeserialize(xmlReader) ) {
