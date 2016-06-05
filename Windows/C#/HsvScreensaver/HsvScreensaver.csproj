@@ -213,7 +213,7 @@ foreach (var item in filesToCleanup)
   </Target>
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <PropertyGroup>
-    <PreBuildEvent>$(ProjectDir)Libraries\TextTransform.exe -out $(ProjectDir)\AssemblyInfo.cs  $(ProjectDir)\AssemblyInfo.tt</PreBuildEvent>
+    <PreBuildEvent>"$(ProjectDir)Libraries\TextTransform.exe" -out "$(ProjectDir)AssemblyInfo.cs" "$(ProjectDir)AssemblyInfo.tt"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
