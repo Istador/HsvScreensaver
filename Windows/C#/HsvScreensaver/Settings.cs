@@ -15,19 +15,27 @@ namespace de.blackpinguin.gl.hsvscr {
         #endregion
         
         #region serialized attributes
+        // texture
         public string ImagePath = "C:\\Users\\Public\\Pictures\\Sample Pictures\\Tulips.jpg";
-        public double Speed = 20.0; // 20 °/s
+        public float[] TextureWrap = new float[2] { 1.0f, 1.0f };
+        public float[] TextureMove = new float[2] { 0.0f, 0.0f };
+        public bool ShowAvatar = true;
+
+        // monitor
         public bool VSync = true;
         public bool Fullscreen = false;
         public bool Maximized = false;
         public int[] Monitors = new int[] { 1, 1 };
-        public bool ShowAvatar = true;
-        public float[] Rainbow = new float[2] { 0.30f, 0.20f };
-        public float[] TextureWrap = new float[2] { 1.0f, 1.0f };
-        public float[] TextureMove = new float[2] { 0.0f, 0.0f };
+        
+        // color fix
         public float[] CorrectPreRGB = new float[3] { 0.0f, 0.0f, 0.0f };
         public float[] CorrectPostRGB = new float[3] { 0.0f, 0.0f, 0.0f };
         public float[] CorrectHSV = new float[3] { 0.0f, 0.0f, 0.0f };
+
+        // Hue Animation
+        public double Speed = 20.0; // 20 °/s
+        public float Intensity = 1.0f; // 100 %
+        public float[] Rainbow = new float[2] { 0.30f, 0.20f };
         public bool[] Randomize = new bool[] { true, true, true };
         #endregion
 

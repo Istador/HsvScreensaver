@@ -93,10 +93,12 @@ namespace de.blackpinguin.gl.hsvscr {
                 GL.BlendFuncSeparate(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha, BlendingFactorSrc.One, BlendingFactorDest.Zero);
                 //GL.BlendFuncSeparate(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha, BlendingFactorSrc.One, BlendingFactorDest.OneMinusSrcAlpha);
 
-                double sx = 10.0 / Width;
-                double sy = 10.0 / Height;
-                double w = 200.0 / Width;
-                double h = 200.0 / Height;
+                double scale = Height / 1080;
+
+                double sx = 10.0 * scale / Width;
+                double sy = 10.0 * scale / Height;
+                double w = 200.0 * scale / Width;
+                double h = 200.0 * scale / Height;
                 dlAvatar = new DisplayList(PrimitiveType.Quads, () => {
                     GL.Color4(1.0, 1.0, 1.0, 0.8);
                     GL.TexCoord2(0.0, 1.0);
@@ -131,13 +133,14 @@ namespace de.blackpinguin.gl.hsvscr {
         }
 
         public void RefreshUniforms() {
+            shader.SetVariable("intensity", Settings.I.Intensity);
             shader.SetVariable("rainbow", Settings.I.Rainbow[0], Settings.I.Rainbow[1]);
             shader.SetVariable("monitors", Settings.I.Monitors[0], Settings.I.Monitors[1]);
             shader.SetVariable("texWrap", Settings.I.TextureWrap[0], Settings.I.TextureWrap[1]);
             shader.SetVariable("texMove", Settings.I.TextureMove[0], Settings.I.TextureMove[1]);
-            shader.SetVariable("correctPreRGB", Settings.I.CorrectPreRGB[0], Settings.I.CorrectPreRGB[1], Settings.I.CorrectPreRGB[2]);
-            shader.SetVariable("correctPostRGB", Settings.I.CorrectPostRGB[0], Settings.I.CorrectPostRGB[1], Settings.I.CorrectPostRGB[2]);
-            shader.SetVariable("correctHSV", Settings.I.CorrectHSV[0], Settings.I.CorrectHSV[1], Settings.I.CorrectHSV[2]);
+            shader.SetVariable("correctPreRGB", Settings.I.CorrectPreRGB[0], Settings.I.CorrectPreRGB[1], Settings.I.CorrectPreRGB[2], 0.0f);
+            shader.SetVariable("correctPostRGB", Settings.I.CorrectPostRGB[0], Settings.I.CorrectPostRGB[1], Settings.I.CorrectPostRGB[2], 0.0f);
+            shader.SetVariable("correctHSV", Settings.I.CorrectHSV[0] + 1.0f, Settings.I.CorrectHSV[1], Settings.I.CorrectHSV[2], 0.0f);
         }
 
         public void Resize(int Width, int Height) {
@@ -166,7 +169,7 @@ namespace de.blackpinguin.gl.hsvscr {
             tBackground.Unbind();
             shader.Unbind();
 
-            if ( Settings.I.ShowAvatar ) {
+            if ( Settings.I.ShowAvatar && tAvatar != null ) {
                 tAvatar.Bind();
                 dlAvatar.Call();
                 tAvatar.Unbind();

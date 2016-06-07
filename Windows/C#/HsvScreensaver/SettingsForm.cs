@@ -2,14 +2,35 @@
 using System.Reflection;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace de.blackpinguin.gl.hsvscr {
     public partial class SettingsForm : Form {
         ScreensaverGL gl;
         bool loaded = false;
+        FastBitmap dark = null;
 
         public SettingsForm() {
             InitializeComponent();
+
+            // darken avatar
+            dark = new FastBitmap(Properties.Resources.pingu);
+            for ( int y = 0 ; y < dark.Height ; y++ ) {
+                for ( int x = 0 ; x < dark.Width ; x++ ) {
+                    byte[] c = dark.Get(x, y);
+                    for ( byte i = 0 ; i < c.Length ; i++ ) {
+                        int j = Math.Max(0, c[i] - 20);
+                        //int j = c[i] - 20;
+                        //Console.WriteLine(j + " -> " + (byte) j);
+                        c[i] = (byte) j;
+                    }
+                    dark.Set(x, y, c);
+                }
+                //break;
+            }
+            if ( ! Settings.I.ShowAvatar ) {
+                avatar.BackgroundImage = dark.Img;
+            }
 
             editImagePath.Text = Settings.I.ImagePath;
             xTextureWrap.Value = (Decimal) Settings.I.TextureWrap[0];
@@ -33,8 +54,10 @@ namespace de.blackpinguin.gl.hsvscr {
             yMonitors.Value = Settings.I.Monitors[1];
             fullScreenMode.SelectedIndex = Settings.I.Fullscreen ? 2 : (Settings.I.Maximized ? 1 : 0);
             vSync.Checked = Settings.I.VSync;
+            if ( ! Settings.I.VSync ) { vSync.Enabled = true; }
 
             speed.Value = (Decimal) Settings.I.Speed;
+            intensity.Value = (Decimal) (Settings.I.Intensity * 100.0f);
             xRainbow.Value = (Decimal) Settings.I.Rainbow[0];
             yRainbow.Value = (Decimal) Settings.I.Rainbow[1];
             rndHue.Checked = Settings.I.Randomize[0];
@@ -101,6 +124,7 @@ namespace de.blackpinguin.gl.hsvscr {
                 Settings.I.CorrectPostRGB[2] = (float) cPostBlue.Value;
 
                 Settings.I.Speed = (float) speed.Value;
+                Settings.I.Intensity = (float) intensity.Value * 0.01f;
                 Settings.I.Rainbow[0] = (float) xRainbow.Value;
                 Settings.I.Rainbow[1] = (float) yRainbow.Value;
 
@@ -144,15 +168,17 @@ namespace de.blackpinguin.gl.hsvscr {
 
         private void preview_Load(object sender, EventArgs e) {
             if ( !loaded ) {
+                bool ava = Settings.I.ShowAvatar;
+                Settings.I.ShowAvatar = true;
                 try {
                     gl.Load(preview.Width, preview.Height);
                     loaded = true;
-                    Console.WriteLine("loaded");
                 }
                 catch ( Exception ) {
                     loaded = false;
                     //Console.WriteLine(ex.Message.ToString() + " : " + ex.StackTrace.ToString());
                 }
+                Settings.I.ShowAvatar = ava;
             }
         }
 
@@ -183,6 +209,16 @@ namespace de.blackpinguin.gl.hsvscr {
                     Program.Show();
                 }).Start();
             }
+        }
+
+        private void avatar_Click(object sender, EventArgs e) {
+            Bitmap pic = Properties.Resources.pingu;
+
+            Settings.I.ShowAvatar = !Settings.I.ShowAvatar;
+            if ( !Settings.I.ShowAvatar ) {
+                pic = dark.Img;
+            }
+            avatar.BackgroundImage = pic;
         }
     }
 }

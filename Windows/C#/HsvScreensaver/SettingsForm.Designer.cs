@@ -43,6 +43,9 @@
             this.xRainbow = new System.Windows.Forms.NumericUpDown();
             this.yRainbow = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.intensity = new System.Windows.Forms.NumericUpDown();
+            this.rndHue = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.speed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,7 +58,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.yTextureWrap = new System.Windows.Forms.NumericUpDown();
             this.xTextureWrap = new System.Windows.Forms.NumericUpDown();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.avatar = new System.Windows.Forms.Panel();
             this.labAppName = new System.Windows.Forms.Label();
             this.labVersion = new System.Windows.Forms.Label();
             this.urlLink = new System.Windows.Forms.LinkLabel();
@@ -76,12 +79,12 @@
             this.cPreBlue = new System.Windows.Forms.NumericUpDown();
             this.cPreGreen = new System.Windows.Forms.NumericUpDown();
             this.cPreRed = new System.Windows.Forms.NumericUpDown();
-            this.rndHue = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.xMonitors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yMonitors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yRainbow)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.intensity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.speed)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -248,6 +251,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.intensity);
             this.groupBox1.Controls.Add(this.rndHue);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.speed);
@@ -258,6 +263,37 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // intensity
+            // 
+            this.intensity.DecimalPlaces = 1;
+            this.intensity.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.intensity, "intensity");
+            this.intensity.Name = "intensity";
+            this.intensity.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.intensity.ValueChanged += new System.EventHandler(this.SettingsChanged);
+            // 
+            // rndHue
+            // 
+            resources.ApplyResources(this.rndHue, "rndHue");
+            this.rndHue.Checked = true;
+            this.rndHue.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.rndHue.Name = "rndHue";
+            this.rndHue.UseVisualStyleBackColor = true;
+            this.rndHue.CheckedChanged += new System.EventHandler(this.SettingsChanged);
             // 
             // label8
             // 
@@ -434,11 +470,13 @@
             0});
             this.xTextureWrap.ValueChanged += new System.EventHandler(this.SettingsChanged);
             // 
-            // panel1
+            // avatar
             // 
-            this.panel1.BackgroundImage = global::de.blackpinguin.gl.hsvscr.Properties.Resources.pingu;
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
+            this.avatar.BackgroundImage = global::de.blackpinguin.gl.hsvscr.Properties.Resources.pingu;
+            resources.ApplyResources(this.avatar, "avatar");
+            this.avatar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.avatar.Name = "avatar";
+            this.avatar.Click += new System.EventHandler(this.avatar_Click);
             // 
             // labAppName
             // 
@@ -709,15 +747,6 @@
             this.cPreRed.Name = "cPreRed";
             this.cPreRed.ValueChanged += new System.EventHandler(this.SettingsChanged);
             // 
-            // rndHue
-            // 
-            resources.ApplyResources(this.rndHue, "rndHue");
-            this.rndHue.Checked = true;
-            this.rndHue.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rndHue.Name = "rndHue";
-            this.rndHue.UseVisualStyleBackColor = true;
-            this.rndHue.CheckedChanged += new System.EventHandler(this.SettingsChanged);
-            // 
             // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
@@ -727,7 +756,7 @@
             this.Controls.Add(this.urlLink);
             this.Controls.Add(this.labVersion);
             this.Controls.Add(this.labAppName);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.avatar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -743,6 +772,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.yRainbow)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.intensity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.speed)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -790,7 +820,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown yTextureWrap;
         private System.Windows.Forms.NumericUpDown xTextureWrap;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel avatar;
         private System.Windows.Forms.Label labAppName;
         private System.Windows.Forms.Label labVersion;
         private System.Windows.Forms.LinkLabel urlLink;
@@ -817,5 +847,7 @@
         private System.Windows.Forms.NumericUpDown xTextureMove;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox rndHue;
+        private System.Windows.Forms.NumericUpDown intensity;
+        private System.Windows.Forms.Label label10;
     }
 }
