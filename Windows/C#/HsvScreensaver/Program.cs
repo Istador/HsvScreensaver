@@ -7,6 +7,8 @@ namespace de.blackpinguin.gl.hsvscr {
 
         [STAThread]
         static void Main(string[] args) {
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
