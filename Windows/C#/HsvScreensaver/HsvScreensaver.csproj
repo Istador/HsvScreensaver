@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{69552709-0F61-4921-A562-3C1C8C606A45}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>de.blackpinguin.gl.hsvscr</RootNamespace>
     <AssemblyName>HsvScreensaver</AssemblyName>
@@ -95,12 +95,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="DisplayList.cs" />
+    <Compile Include="GLSL\DisplayList.cs" />
     <Compile Include="FastBitmap.cs" />
-    <Compile Include="PreviewForm.cs">
+    <Compile Include="Forms\PreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PreviewForm.Designer.cs">
+    <Compile Include="Forms\PreviewForm.Designer.cs">
       <DependentUpon>PreviewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -112,16 +112,16 @@
     <Compile Include="ScreensaverGL.cs" />
     <Compile Include="ScreensaverWindow.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="SettingsForm.cs">
+    <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForm.designer.cs">
+    <Compile Include="Forms\SettingsForm.designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shader.cs" />
-    <Compile Include="BufferObject.cs" />
-    <Compile Include="Texture.cs" />
-    <EmbeddedResource Include="PreviewForm.resx">
+    <Compile Include="GLSL\Shader.cs" />
+    <Compile Include="GLSL\BufferObject.cs" />
+    <Compile Include="GLSL\Texture.cs" />
+    <EmbeddedResource Include="Forms\PreviewForm.resx">
       <DependentUpon>PreviewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -129,10 +129,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.de.resx">
+    <EmbeddedResource Include="Forms\SettingsForm.de.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.resx">
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
