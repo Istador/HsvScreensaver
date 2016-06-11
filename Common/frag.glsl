@@ -33,20 +33,20 @@ vec4 hsv2rgb(vec4 c)
 
 void main(void)
 {
-	// texture pos
-	vec2 pos = gl_TexCoord[0].st;
+    // texture pos
+    vec2 pos = gl_TexCoord[0].st;
 
-	// get color from texture
+    // get color from texture
     vec4 rgb = clamp(texture2D(texture, pos) + correctPreRGB, 0.0, 1.0);
 
-	// RGB to HSV and HSV correction
-	vec4 hsv = rgb2hsv(rgb) + correctHSV;
-	hsv.gb = clamp(hsv.gb, 0.0, 1.0);
+    // RGB to HSV and HSV correction
+    vec4 hsv = rgb2hsv(rgb) + correctHSV;
+    hsv.gb = clamp(hsv.gb, 0.0, 1.0);
 
-	// Hue Transformation
-	vec2 skew = (rainbow * pos) + speed;
-	hsv.r = mod(hsv.r + hue + dot(skew, one.st), 1.0);
-	
-	// output color
+    // Hue Transformation
+    vec2 skew = (rainbow * pos) + speed;
+    hsv.r = mod(hsv.r + hue + dot(skew, one.st), 1.0);
+    
+    // output color
     gl_FragColor = mix(rgb, hsv2rgb(hsv) + correctPostRGB, intensity);
 }

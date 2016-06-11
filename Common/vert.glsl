@@ -13,16 +13,16 @@ varying out vec2 speed;
 
 void main(void)
 {
-	// vertex position
-	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+    // vertex position
+    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
 
-	// texture position
-	vec2 tex = monitors * texWrap;
-	gl_TexCoord[0].st = (gl_MultiTexCoord0.st * tex.st) + texMove.st;
+    // texture position
+    vec2 tex = monitors * texWrap;
+    gl_TexCoord[0].st = (gl_MultiTexCoord0.st * tex.st) + texMove.st;
 
-	// vertex color
-	gl_FrontColor = gl_Color;
+    // vertex color
+    gl_FrontColor = gl_Color;
 
-	// speed
-	speed = abs(monitors) * abs(texWrap) * abs(rainbow) * hue;
+    // speed
+    speed = abs(monitors) * abs(texWrap) * abs(rainbow) * hue;
 }
