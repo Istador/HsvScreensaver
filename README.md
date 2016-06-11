@@ -38,31 +38,31 @@ A click on the penguin at the bottom left disables or enables the penguin. Click
    - Path [String]
    - Repeat
       - X [+0.01, 50.00]: repeat the image horizontally
-	  - Y [+0.01, 50.00]: repeat the image vertically
+      - Y [+0.01, 50.00]: repeat the image vertically
    - Move
       - X [-1.00, +1.00]: moves the images origin point horizontally
-	  - Y [-1.00, +1.00]: moves the images origin point vertivally
+      - Y [-1.00, +1.00]: moves the images origin point vertivally
 - Color Correction
    - +RGB: changes the rgb colors of the input image
       - R [-1.00, +1.00]: red
-	  - G [-1.00, +1.00]: green
-	  - B [-1.00, +1.00]: blue
+      - G [-1.00, +1.00]: green
+      - B [-1.00, +1.00]: blue
    - HSV
       - H [ 0.00, +3.60]: hue in 1/100 degree
-	  - S [-1.00, +1.00]: saturation
-	  - V [-1.00, +1.00]: value
+      - S [-1.00, +1.00]: saturation
+      - V [-1.00, +1.00]: value
    - RGB: changes the rgb colors of the output image
       - R [-1.00, +1.00]: red
-	  - G [-1.00, +1.00]: green
-	  - B [-1.00, +1.00]: blue
+      - G [-1.00, +1.00]: green
+      - B [-1.00, +1.00]: blue
 - Display
    - Monitors
       - X [1, 9]: number of horizontal monitors besides each other
-	  - Y [1, 9]: number of vertical monitors above each other
+      - Y [1, 9]: number of vertical monitors above each other
    - Mode {Normal, Mazimized, Fullscreen}: Display mode
    - VSync {0, 1}: Changing this setting is disabled, because it might overheat the video card if disabled. It can only be enabled manually in the settings file.
 - Hue Animation
-   - Speed [-50.0, +50.0]: animation speed in °/s (scales per axis individually with X/Y, Monitors and Repeat)
+   - Speed [-50.0, +50.0]: animation speed in Â°/s (scales per axis individually with X/Y, Monitors and Repeat)
    - Intensity [0.0, 100.0]: percentage of blending with the unaltered source image (0.0 := source image)
    - X [-20.0, +20.0]: increases the hue value based on the x-coordinate (this creates a horizontal rainbow effect)
    - Y [-20.0, +20.0]:  increases the hue value based on the y-coordinate (this creates a vertical rainbow effect)
@@ -72,7 +72,7 @@ The setting will be saved in the `config.xml` file in the settings directory.
 
 On Windows 7 the settings directory is: `%userprofile%/AppData/Roaming/blackpinguin.de/HsvScreensaver/`
 
-It's possible to use custom vertex and fragement shaders by creating the files `vert.glsl` and/or `frag.glsl` in the settings directory. On older hardware where this screensaver might not be running smoothly, it is advisable to use custom shaders to improve performance. For example, one might remove unused color correction settings from the fragment shader.
+It's possible to use custom vertex and fragement shaders by creating the files [vert.glsl](https://github.com/Istador/HsvScreensaver/blob/public/Common/vert.glsl) and/or [frag.glsl](https://github.com/Istador/HsvScreensaver/blob/public/Common/frag.glsl) in the settings directory. On older hardware where this screensaver might not be running smoothly, it is advisable to use custom shaders to improve performance. For example, one might remove unused color correction settings from the fragment shader.
 
 
 ## Build
