@@ -31,8 +31,7 @@ The screensaver can be customized using the settings dialog that can be opened i
 
 A click on the penguin at the bottom left disables or enables the penguin. Clicking on the preview at the bottom right opens a fullscreen preview using the selected display mode.
 
-![A screenshot showing the settings dialog in english]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/screenshots/SettingsForm.en.png "Settings Dialog")
+![A screenshot showing the settings dialog in english](https://github.com/Istador/HsvScreensaver/blob/pictures/screenshots/SettingsForm.en.png "Settings Dialog")
 
 - Image
    - Path [String]
@@ -101,11 +100,7 @@ It's advisable to have an image with color information and varying saturations, 
 
 Here is a simple image I made that you can use:
 
-[
-![Death Star PD logo on an blue background]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/source_images/DSPD_thumb.png "Example source image")
-]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/source_images/DSPD_1080.png)
+[![Death Star PD logo on an blue background](https://github.com/Istador/HsvScreensaver/blob/pictures/source_images/DSPD_thumb.png "Example source image")](https://github.com/Istador/HsvScreensaver/blob/pictures/source_images/DSPD_1080.png)
 
 It uses the [Death Star PD](https://rcl.blackpinguin.de/proj/DeathStarPD/) logo on a blue background with noise, a textile pattern and a central light spot.
 
@@ -121,13 +116,11 @@ Settings:
 
 Animation:
 
-![Skew rainbow color effect that (seems) to move horizontally from left to right]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Rainbow.gif "Animation: Skew Rainbow")
+![Skew rainbow color effect that (seems) to move horizontally from left to right](https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Rainbow.gif "Animation: Skew Rainbow")
 
 Screenshot:
 
-![Skew rainbow color effect]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Rainbow.png "Screenshot with a higher quality than the GIF")
+![Skew rainbow color effect](https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Rainbow.png "Screenshot with a higher quality than the GIF")
 
 
 ### Horizontal Rainbow
@@ -139,13 +132,11 @@ Settings:
 
 Animation:
 
-![Rainbow color effect that (seems) to move horizontally from left to right]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Horizontal.gif "Animation: Rainbow horizontally")
+![Rainbow color effect that (seems) to move horizontally from left to right](https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Horizontal.gif "Animation: Rainbow horizontally")
 
 Screenshot:
 
-![Horizontal rainbow color effect]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Horizontal.png "Screenshot with a higher quality than the GIF")
+![Horizontal rainbow color effect](https://github.com/Istador/HsvScreensaver/blob/pictures/examples/Horizontal.png "Screenshot with a higher quality than the GIF")
 
 
 ### One Color
@@ -157,10 +148,8 @@ Settings:
 
 Animation:
 
-![One color on the whole screen that is changing over time]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/examples/OneColor.gif "Animation: rotating one color")
+![One color on the whole screen that is changing over time](https://github.com/Istador/HsvScreensaver/blob/pictures/examples/OneColor.gif "Animation: rotating one color")
 
 Screenshot:
 
-![One color on the whole scren]
-(https://github.com/Istador/HsvScreensaver/blob/pictures/examples/OneColor.png "Screenshot with a higher quality than the GIF")
+![One color on the whole scren](https://github.com/Istador/HsvScreensaver/blob/pictures/examples/OneColor.png "Screenshot with a higher quality than the GIF")
