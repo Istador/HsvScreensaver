@@ -7,9 +7,7 @@ uniform vec2 monitors;
 uniform vec2 texWrap;
 uniform vec2 texMove;
 
-//uniform vec3 correctPreRGB;
-
-varying out vec2 speed;
+varying vec2 speed;
 
 void main(void)
 {

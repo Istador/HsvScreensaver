@@ -9,7 +9,7 @@ uniform vec4 correctHSV;
 
 uniform sampler2D texture;
 
-in vec2 speed;
+varying vec2 speed;
 
 const vec4 one = vec4(1.0);
 
