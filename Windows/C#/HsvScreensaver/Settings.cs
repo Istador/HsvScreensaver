@@ -12,6 +12,8 @@ namespace de.blackpinguin.gl.hsvscr {
         private static Settings instance = null;
         [NonSerialized()]
         private static string settingsDir = null;
+        [NonSerialized()]
+        public bool Windowed = false;
         #endregion
         
         #region serialized attributes

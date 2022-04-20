@@ -12,7 +12,7 @@ namespace de.blackpinguin.gl.hsvscr {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            char cmd = getParam(args, 0, 's');
+            char cmd = getCommand(args, 0, 's');
             if ( cmd == 'c' ) {
                 Configure();
             }
@@ -25,6 +25,14 @@ namespace de.blackpinguin.gl.hsvscr {
                 #else
                 Show();
                 #endif
+            }
+            else if ( cmd == 'w' ) {
+                Settings.I.Windowed   = true;
+                Settings.I.Maximized  = false;
+                Settings.I.Fullscreen = false;
+                int w = (int.TryParse(getParam(args, 1, ""), out w) ? w : int.MaxValue);
+                int h = (int.TryParse(getParam(args, 2, ""), out h) ? h : int.MaxValue);
+                Show(w, h);
             }
             else {
                 Configure();
@@ -41,27 +49,33 @@ namespace de.blackpinguin.gl.hsvscr {
             Application.Run(new PreviewForm(Ptr));
         }
 
-        public static void Show() {
+        public static void Show(int width = int.MaxValue, int height = int.MaxValue) {
             // get resolution
-            int left = int.MaxValue;
-            int right = int.MinValue;
-            int top = int.MaxValue;
+            int left   = int.MaxValue;
+            int right  = int.MinValue;
+            int top    = int.MaxValue;
             int bottom = int.MinValue;
             foreach ( Screen s in Screen.AllScreens ) {
-                left = Math.Min(s.Bounds.Left, left);
-                right = Math.Max(s.Bounds.Right, right);
-                top = Math.Min(s.Bounds.Top, top);
+                left   = Math.Min(s.Bounds.Left,   left);
+                right  = Math.Max(s.Bounds.Right,  right);
+                top    = Math.Min(s.Bounds.Top,    top);
                 bottom = Math.Max(s.Bounds.Bottom, bottom);
             }
-            Rectangle r = new Rectangle(left, top, right - left, bottom - top);
+            width  = Math.Min(width,  right - left);
+            height = Math.Min(height, bottom - top);
+            Rectangle r = new Rectangle(left, top, width, height);
             using ( ScreensaverWindow scr = new ScreensaverWindow(r) ) {
                 scr.Run();
             }
         }
 
-        private static char getParam(string[] args, int index, char _default) {
+        private static string getParam(string[] args, int index, string _default) {
             if ( args.Length <= index || index < 0 ) { return _default; }
-            return args[index].Trim().Substring(1, 1).ToLower()[0];
+            return args[index].Trim();
+        }
+
+        private static char getCommand(string[] args, int index, char _default) {
+            return getParam(args, index, "/" + _default).Substring(1, 1).ToLower()[0];
         }
     }
 }

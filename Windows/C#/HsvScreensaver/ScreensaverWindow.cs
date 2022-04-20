@@ -13,16 +13,18 @@ namespace de.blackpinguin.gl.hsvscr {
         public ScreensaverWindow(Rectangle r)
             : base(r.Width, r.Height, GraphicsMode.Default, "HsvScreensaver", GameWindowFlags.FixedWindow) {
             // set up window
-            WindowBorder = WindowBorder.Hidden;
+            WindowBorder = (Settings.I.Windowed ? WindowBorder.Resizable : WindowBorder.Hidden);
             WindowState = (Settings.I.Fullscreen ? WindowState.Fullscreen : (Settings.I.Maximized ? WindowState.Maximized : WindowState.Normal));
             Location = r.Location;
             ClientRectangle = r;
 
             VSync = (Settings.I.VSync ? VSyncMode.On : VSyncMode.Off);
 
-            CursorVisible = false;
-            KeyDown += (sender, ev) => { Close(); };
-            MouseDown += (sender, ev) => { Close(); };
+            if ( ! Settings.I.Windowed ) {
+                CursorVisible = false;
+                KeyDown += (sender, ev) => { Close(); };
+                MouseDown += (sender, ev) => { Close(); };
+            }
 
             gl = new ScreensaverGL();
         }
